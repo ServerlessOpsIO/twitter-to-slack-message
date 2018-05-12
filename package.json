@@ -1,0 +1,10 @@
+{
+  "name": "twitter-to-slack-message",
+  "description": "",
+  "version": "0.1.0",
+  "dependencies": {},
+  "devDependencies": {
+    "serverless-python-requirements": "^4.0.3",
+    "serverless-sam": "0.0.5"
+  }
+}

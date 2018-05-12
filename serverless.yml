@@ -1,0 +1,57 @@
+# <DESCRIBE SERVICE>
+service: twitter-to-slack-message
+
+plugins:
+  - serverless-python-requirements
+  - serverless-sam
+
+custom:
+  stage: "${opt:stage, env:SLS_STAGE, 'dev'}"
+  profile: "${opt:aws-profile, env:AWS_PROFILE, env:AWS_DEFAULT_PROFILE, 'default'}"
+  log_level: "${env:LOG_LEVEL, 'INFO'}"
+
+  pythonRequirements:
+    dockerizePip: false
+
+
+provider:
+  name: aws
+  profile: ${self:custom.profile}
+  stage: ${self:custom.stage}
+  runtime: python3.6
+  environment:
+    LOG_LEVEL: ${self:custom.log_level}
+  stackTags:
+    x-service: twitter-to-slack-message
+    x-stack: ${self:service}-${self:provider.stage}
+  iamRoleStatements:
+    - Effect: "Allow"
+      Action: "SNS:Publish"
+      Resource:
+        Ref: TwitterEventSnsTopic
+
+
+functions:
+  TwitterEventPublisher:
+    handler: handlers/twitter_to_slack_message.handler
+    description: "Publish a Twitter event as a Slack formatted message."
+    memorySize: 128
+    timeout: 30
+    environment:
+      AWS_SNS_TOPIC_ARN:
+        Ref: TwitterEventSnsTopic
+
+resources:
+  Resources:
+    TwitterEventSnsTopic:
+      Type: "AWS::SNS::Topic"
+
+
+  Outputs:
+    TwitterEventSnsTopicArn:
+      Description: "AWS SNS Topic ARN"
+      Value:
+        Ref: TwitterEventSnsTopic
+      Export:
+        Name: "${self:service}-${self:provider.stage}-TwitterEventSnsTopic"
+
