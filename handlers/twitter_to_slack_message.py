@@ -47,8 +47,7 @@ def _format_slack_message_from_tweet(tweet: dict) -> dict:
         "mrkdwn": True
     }
 
-    tweet_url = _get_tweet_url(author_info['author_subname'],
-                               tweet.get('id_str'))
+    tweet_url = _get_tweet_url(tweet)
 
     # XXX: Only Author link is showing up in tweet
     tweet_data['author_link'] = tweet_url
@@ -93,8 +92,10 @@ def _get_tweet_author_url(screen_name: str, base: str=TWITTER_URL_BASE) -> str:
     return '/'.join([base, screen_name])
 
 
-def _get_tweet_url(tweet_author: str, tweet_id: str, base: str=TWITTER_URL_BASE) -> str:
+def _get_tweet_url(tweet: dict, base: str=TWITTER_URL_BASE) -> str:
     '''Return the Tweet URL based on Id.'''
+    tweet_author = tweet.get('user').get('screen_name')
+    tweet_id = tweet.get('id_str')
     return '/'.join([base, tweet_author, 'status', tweet_id])
 
 
