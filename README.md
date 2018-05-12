@@ -28,9 +28,9 @@ This application searches the Twitter stream and publishes tweets matching a sea
 
 The application requires the following services.  Deploy them in the order listed below.
 
-# twitter-to-slack-message: This service
-# [aws-serverless-twitter-event-source](https://serverlessrepo.aws.amazon.com/applications/arn:aws:serverlessrepo:us-east-1:077246666028:applications~aws-serverless-twitter-event-source): Searched the Twitter event stream.
-# aws-sns-to-slack-publisher: Publishes messages to Slack.
+1. twitter-to-slack-message: This service
+2. [aws-serverless-twitter-event-source](https://serverlessrepo.aws.amazon.com/applications/arn:aws:serverlessrepo:us-east-1:077246666028:applications~aws-serverless-twitter-event-source): Searched the Twitter event stream.
+3. aws-sns-to-slack-publisher: Publishes messages to Slack.
 
 The final application will be as follows:
 
