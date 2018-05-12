@@ -16,6 +16,17 @@ TWITTER_URL_BASE = 'https://twitter.com'
 AWS_SNS_TOPIC_ARN = os.environ.get('AWS_SNS_TOPIC_ARN')
 SNS = boto3.client('sns')
 
+def _format_slack_media_attachment(media: dict) -> dict:
+    '''Format a media attachment for slack'''
+    url = media.get('media_url_https')
+    a = {
+        'text': url,
+        'image_url': url
+    }
+
+    return a
+
+
 def _format_slack_message_from_tweet(tweet: dict) -> dict:
     '''Given a tweet, format a slack message'''
 
@@ -45,10 +56,14 @@ def _format_slack_message_from_tweet(tweet: dict) -> dict:
     tweet_data['original_url'] = tweet_url
 
     tweet_data['fallback'] = _get_fallback_text(tweet)
-
-
-
     msg['attachments'].append(tweet_data)
+
+    if tweet.get('entities') and tweet.get('extended_entities').get('media'):
+        media_attachments = tweet.get('extended_entities').get('media')
+        for media in media_attachments:
+            slack_attachment = _format_slack_media_attachment(media)
+            msg['attachments'].append(slack_attachment)
+
     _logger.debug('Slack message: {}'.format(json.dumps(msg)))
 
     return msg
