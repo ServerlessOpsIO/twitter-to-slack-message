@@ -28,7 +28,7 @@ provider:
     - Effect: "Allow"
       Action: "SNS:Publish"
       Resource:
-        Ref: TwitterEventSnsTopic
+        Ref: SlackMessageSnsTopic
 
 
 functions:
@@ -39,19 +39,19 @@ functions:
     timeout: 30
     environment:
       AWS_SNS_TOPIC_ARN:
-        Ref: TwitterEventSnsTopic
+        Ref: SlackMessageSnsTopic
 
 resources:
   Resources:
-    TwitterEventSnsTopic:
+    SlackMessageSnsTopic:
       Type: "AWS::SNS::Topic"
 
 
   Outputs:
-    TwitterEventSnsTopicArn:
+    SlackMessageSnsTopicArn:
       Description: "AWS SNS Topic ARN"
       Value:
-        Ref: TwitterEventSnsTopic
+        Ref: SlackMessageSnsTopic
       Export:
-        Name: "${self:service}-${self:provider.stage}-TwitterEventSnsTopic"
+        Name: "${self:service}-${self:provider.stage}-SlackMessageSnsTopicArn"
 
