@@ -19,7 +19,7 @@ Resources:
             Ref: SlackMessageSnsTopic
       Policies:
         - SNSPublishMessagePolicy:
-            BucketName:
+            TopicName:
               Ref: HealthEventSnsTopic
 Outputs:
   SlackMessageSnsTopicArn:
