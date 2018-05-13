@@ -44,4 +44,4 @@ This application is intended to be deployed using [AWS Serverless Application Re
 
 ## Exports
 
-* __${AWS::StackName}-SlackMessageSnsTopicArn__: AWS SNS topic ARN where health events are published to.
+* __${AWS::StackName}-SlackMessageSnsTopicArn__: AWS SNS topic ARN where Slack messages are published to.
