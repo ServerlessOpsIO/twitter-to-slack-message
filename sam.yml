@@ -27,4 +27,5 @@ Outputs:
     Value:
       Ref: SlackMessageSnsTopic
     Export:
-      Name: ${AWS::StackName}-SlackMessageSnsTopicArn
+      Name:
+        Fn::Sub: ${AWS::StackName}-SlackMessageSnsTopicArn
