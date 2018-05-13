@@ -42,6 +42,18 @@ The final application will be as follows:
 
 This application is intended to be deployed using [AWS Serverless Application Repository](https://aws.amazon.com/serverless/serverlessrepo/).  However, [Serverless Framework](https://www.serverless.com) is also supported.
 
+### Serverless Application Repository / CloudFormation
+
+* AWS Serverless Application Repository: [twitter-to-slack-message](https://serverlessrepo.aws.amazon.com/applications/arn:aws:serverlessrepo:us-east-1:641494176294:applications~twitter-to-slack-message)
+
+### Serverless Framework
+
+```
+$ npm install -g serverless
+$ npm install
+$ serverless deploy -v
+```
+
 ## Exports
 
 * __${AWS::StackName}-SlackMessageSnsTopicArn__: AWS SNS topic ARN where Slack messages are published to.
