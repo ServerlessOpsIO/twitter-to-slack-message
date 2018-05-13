@@ -31,7 +31,7 @@ The application requires the following services.  Deploy them in the order liste
 
 1. twitter-to-slack-message: This service
 2. [aws-serverless-twitter-event-source](https://serverlessrepo.aws.amazon.com/applications/arn:aws:serverlessrepo:us-east-1:077246666028:applications~aws-serverless-twitter-event-source): Searched the Twitter event stream.
-3. aws-sns-to-slack-publisher: Publishes messages to Slack.
+3. [aws-sns-to-slack-publisher](https://serverlessrepo.aws.amazon.com/applications/arn:aws:serverlessrepo:us-east-1:641494176294:applications~aws-sns-to-slack-publisher): Publishes messages to Slack.
 
 The final application will be as follows:
 
