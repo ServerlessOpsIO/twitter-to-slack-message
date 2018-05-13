@@ -20,7 +20,7 @@ Resources:
       Policies:
         - SNSPublishMessagePolicy:
             TopicName:
-              Ref: HealthEventSnsTopic
+              Ref: SlackMessageSnsTopic
 Outputs:
   SlackMessageSnsTopicArn:
     Description: AWS SNS Topic ARN
