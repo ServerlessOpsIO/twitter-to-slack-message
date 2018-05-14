@@ -57,7 +57,7 @@ def _format_slack_message_from_tweet(tweet: dict) -> dict:
     tweet_data['fallback'] = _get_fallback_text(tweet)
     msg['attachments'].append(tweet_data)
 
-    if tweet.get('entities') and tweet.get('extended_entities').get('media'):
+    if tweet.get('extended_entities') and tweet.get('extended_entities').get('media'):
         media_attachments = tweet.get('extended_entities').get('media')
         for media in media_attachments:
             slack_attachment = _format_slack_media_attachment(media)
