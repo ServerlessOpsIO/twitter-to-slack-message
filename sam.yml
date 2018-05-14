@@ -20,7 +20,9 @@ Resources:
       Policies:
         - SNSPublishMessagePolicy:
             TopicName:
-              Ref: SlackMessageSnsTopic
+              Fn::GetAtt:
+                - SlackMessageSnsTopic
+                - TopicName
 Outputs:
   SlackMessageSnsTopicArn:
     Description: AWS SNS Topic ARN
